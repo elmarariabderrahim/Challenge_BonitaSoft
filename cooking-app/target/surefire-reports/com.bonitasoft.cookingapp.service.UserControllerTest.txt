@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.bonitasoft.cookingapp.service.UserControllerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.633 s <<< FAILURE! - in com.bonitasoft.cookingapp.service.UserControllerTest
+testGenerateToken_InvalidCredentials  Time elapsed: 0.453 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Checked exception is invalid for this method!
+Invalid: java.lang.Exception: invalid username or password
+	at com.bonitasoft.cookingapp.service.UserControllerTest.testGenerateToken_InvalidCredentials(UserControllerTest.java:126)
+

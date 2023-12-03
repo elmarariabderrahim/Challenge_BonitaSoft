@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.bonitasoft.cookingapp.CookingAppApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 31.487 s - in com.bonitasoft.cookingapp.CookingAppApplicationTests
