@@ -157,9 +157,9 @@ public class RecipeControllerTest {
         Long authorId = 2L;
         Recipe mockUpdatedRecipe = new Recipe();
 
-        when(recipeService.updateRecipe(recipeId, mockUpdatedRecipe, authorId)).thenReturn(mockUpdatedRecipe);
+        when(recipeService.updateRecipe(recipeId, mockUpdatedRecipe)).thenReturn(mockUpdatedRecipe);
 
-        ResponseEntity<Recipe> responseEntity = recipeController.updateRecipe(recipeId, mockUpdatedRecipe, authorId);
+        ResponseEntity<Recipe> responseEntity = recipeController.updateRecipe(recipeId, mockUpdatedRecipe);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(mockUpdatedRecipe, responseEntity.getBody());

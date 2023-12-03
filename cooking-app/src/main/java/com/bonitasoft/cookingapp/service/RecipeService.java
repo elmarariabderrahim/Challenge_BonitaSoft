@@ -56,7 +56,7 @@ public class RecipeService {
         return recipesResults;
     }
 
-    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe, Long authorId) {
+    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) {
         // Find the existing recipe by ID
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new EntityNotFoundException("Recipe not found with id: " + recipeId));
@@ -66,10 +66,18 @@ public class RecipeService {
         existingRecipe.setIngredients(updatedRecipe.getIngredients());
         existingRecipe.setSteps(updatedRecipe.getSteps());
 
+        String updatedAuthorUsername = updatedRecipe.getAuthor().getUsername();
+        String existingAuthorUsername = existingRecipe.getAuthor().getUsername();
 
-        User author = userRepository.findById(authorId)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + authorId));
-        existingRecipe.setAuthor(author);
+        if (!existingAuthorUsername.equals(updatedAuthorUsername)) {
+            User author = userRepository.getByUsername(updatedAuthorUsername);
+            if (author == null) {
+                throw new EntityNotFoundException("User not found with UserName: " + updatedAuthorUsername);
+            } else {
+                existingRecipe.setAuthor(author);
+            }
+        }
+
 
 
         return recipeRepository.save(existingRecipe);

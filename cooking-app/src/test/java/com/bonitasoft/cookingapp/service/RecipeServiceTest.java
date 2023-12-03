@@ -105,7 +105,7 @@ public class RecipeServiceTest {
 
         when(recipeRepository.save(mockExistingRecipe)).thenReturn(mockExistingRecipe);
 
-        Recipe updatedRecipe = recipeService.updateRecipe(recipeId, mockUpdatedRecipe, authorId);
+        Recipe updatedRecipe = recipeService.updateRecipe(recipeId, mockUpdatedRecipe);
 
         verify(recipeRepository, times(1)).findById(recipeId);
         verify(userRepository, times(1)).findById(authorId);
@@ -122,7 +122,7 @@ public class RecipeServiceTest {
 
         when(recipeRepository.findById(recipeId)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> recipeService.updateRecipe(recipeId, mockUpdatedRecipe, authorId));
+        assertThrows(EntityNotFoundException.class, () -> recipeService.updateRecipe(recipeId, mockUpdatedRecipe));
 
         verify(recipeRepository, times(1)).findById(recipeId);
         verify(userRepository, never()).findById(any());
@@ -139,7 +139,7 @@ public class RecipeServiceTest {
         when(recipeRepository.findById(recipeId)).thenReturn(Optional.of(mockExistingRecipe));
         when(userRepository.findById(authorId)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> recipeService.updateRecipe(recipeId, mockUpdatedRecipe, authorId));
+        assertThrows(EntityNotFoundException.class, () -> recipeService.updateRecipe(recipeId, mockUpdatedRecipe));
 
         verify(recipeRepository, times(1)).findById(recipeId);
         verify(userRepository, times(1)).findById(authorId);
